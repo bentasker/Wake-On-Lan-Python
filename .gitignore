@@ -2,7 +2,7 @@
 *~
 # C extensions
 *.so
-
+.wol_config.ini
 # Packages
 *.egg
 *.egg-info
