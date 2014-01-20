@@ -1,0 +1,10 @@
+# Save this file as .wol_config.ini in the same directory as wol.py
+
+[General]
+broadcast=192.168.1.255
+
+[myPC]
+mac=00:2a:a0:cf:83:15
+
+[myLaptop]
+mac=00:13:0d:e4:60:61
