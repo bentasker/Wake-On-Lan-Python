@@ -51,7 +51,7 @@ def wake_on_lan(host):
     # Broadcast it to the LAN.
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    sock.sendto(send_data, (myconfig['General']['broadcast'], 4343))
+    sock.sendto(send_data, (myconfig['General']['broadcast'], 7))
     return True
 
 
