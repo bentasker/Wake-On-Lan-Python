@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Based on wol.py from http://code.activestate.com/recipes/358449-wake-on-lan/
 # Amended to use configuration file and hostnames
