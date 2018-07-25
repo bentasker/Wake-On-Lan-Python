@@ -30,19 +30,15 @@ def wake_on_lan(host):
 
     except:
       return False
-
-    # Check macaddress format and try to compensate.
-    if re.match('([a-fA-F0-9]{2}){6}',macaddress):
-        pass   
+    #Get the mac numbers
+    numbers = re.findall('([a-fA-F0-9]{2})',macaddress)
+    #We must have 6 result, or the mac is invalid
+    if(len(numbers) == 6):
+	#If the result is correct, join it into a string
+        macaddress= ''.join(numbers)
     else:
-	# Use regular expression to extract not usable chars
-	macaddress = re.sub('[^A-F0-9]', '', macaddress,flags=re.IGNORECASE)
-	# Re-check the value
-	if re.match('([a-fA-F0-9]{2}){6}',macaddress):
-            pass   
-    	else:
-            raise ValueError('Incorrect MAC address format')
-
+        raise ValueError('Incorrect MAC address format')  
+    
     # Pad the synchronization stream.
     data = ''.join(['FFFFFFFFFFFF', macaddress * 20])
     send_data = b''
