@@ -37,8 +37,7 @@ def wake_on_lan(host):
 	#If the result is correct, join it into a string
         macaddress= ''.join(numbers)
     else:
-        raise ValueError('Incorrect MAC address format')  
-    
+        raise ValueError('Incorrect MAC address format')
     # Pad the synchronization stream.
     data = ''.join(['FFFFFFFFFFFF', macaddress * 20])
     send_data = b''
