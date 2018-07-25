@@ -32,13 +32,13 @@ def wake_on_lan(host):
       return False
 
     # Check macaddress format and try to compensate.
-    if len(macaddress) == 12:
+    if re.match('([a-fA-F0-9]{2}){6}',macaddress):
         pass   
     else:
 	# Use regular expression to extract not usable chars
 	macaddress = re.sub('[^A-F0-9]', '', macaddress,flags=re.IGNORECASE)
 	# Re-check the value
-	if len(macaddress) == 12:
+	if re.match('([a-fA-F0-9]{2}){6}',macaddress):
             pass   
     	else:
             raise ValueError('Incorrect MAC address format')
