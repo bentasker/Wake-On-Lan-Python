@@ -15,6 +15,7 @@ import struct
 import os
 import sys
 import configparser
+import re
 
 
 myconfig = {}
@@ -32,12 +33,15 @@ def wake_on_lan(host):
 
     # Check macaddress format and try to compensate.
     if len(macaddress) == 12:
-        pass
-    elif len(macaddress) == 12 + 5:
-        sep = macaddress[2]
-        macaddress = macaddress.replace(sep, '')
+        pass   
     else:
-        raise ValueError('Incorrect MAC address format')
+	# Use regular expression to extract not usable chars
+	macaddress = re.sub('[^A-F0-9]', '', macaddress,flags=re.IGNORECASE)
+	# Re-check the value
+	if len(macaddress) == 12:
+            pass   
+    	else:
+            raise ValueError('Incorrect MAC address format')
 
     # Pad the synchronization stream.
     data = ''.join(['FFFFFFFFFFFF', macaddress * 20])
