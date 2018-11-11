@@ -10,7 +10,7 @@ For a quick and lazy way to create the configuration file, see [The Wake On Lan 
 Usage
 -------
 
-    wol.py \[hostname\]
+    wol.py [hostname]
 
 or
 
@@ -24,11 +24,9 @@ Configuration File
 The configuration file is just a basic INI file, containing one section per host;
 
     [General]
-    
     broadcast=192.168.1.255
     
     [MyPc]
-    
     mac=00:13:0d:e4:60:61
 
     
