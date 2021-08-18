@@ -34,3 +34,9 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# IDE folder
+.idea/
+
+# Virtual environment
+venv/
