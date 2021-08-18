@@ -88,5 +88,5 @@ if __name__ == '__main__':
                 print('Invalid Hostname specified')
             else:
                 print('Magic packet should be winging its way')
-    except KeyError:
+    except IndexError:
         usage()
