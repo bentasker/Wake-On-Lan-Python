@@ -90,3 +90,5 @@ if __name__ == '__main__':
                 print('Magic packet should be winging its way')
     except IndexError:
         usage()
+    finally:
+        input('Press ENTER to continue...')
