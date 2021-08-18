@@ -77,14 +77,14 @@ if __name__ == '__main__':
     conf = load_config()
     try:
         # Use mac addresses with any separators.
-        if sys.argv[1] == 'list':
+        if (arg := sys.argv[1]) == 'list':
             print('Configured Hosts:')
             for i in conf:
                 if i != 'General':
                     print('\t', i)
             print('\n')
         else:
-            if not wake_on_lan(sys.argv[1]):
+            if not wake_on_lan(arg):
                 print('Invalid Hostname specified')
             else:
                 print('Magic packet should be winging its way')
