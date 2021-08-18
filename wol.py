@@ -87,7 +87,7 @@ if __name__ == '__main__':
             if not wake_on_lan(arg):
                 print('Invalid Hostname specified')
             else:
-                print('Magic packet should be winging its way')
+                print(f'Magic packet should be winging its way to: {arg}')
     except IndexError:
         usage()
     finally:
