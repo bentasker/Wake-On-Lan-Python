@@ -1,14 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Based on wol.py from http://code.activestate.com/recipes/358449-wake-on-lan/
-Amended to use configuration file and hostnames
-
-Copyright (C) Fadly Tabrani, B Tasker
-
-Released under the PSF License See http://docs.python.org/2/license.html
-"""
-
-
 import socket
 import struct
 import os
