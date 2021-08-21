@@ -83,21 +83,19 @@ def loadConfig():
         Config['myPC'] = {'mac': '00:2a:a0:cf:83:15'}
         Config['myLaptop'] = {'mac': '00:13:0d:e4:60:61'}
         writeConfig(Config)     # Generate default conf file
-	Config.read(conf_path+"/wol_config.ini")
-	sections = Config.sections()
-	dict1 = {}
-	for section in sections:
-		options = Config.options(section)
+    Config.read(conf_path+"/wol_config.ini")
+    sections = Config.sections()
+    dict1 = {}
+    for section in sections:
+        options = Config.options(section)
 
-		sectkey = section
-		myconfig[sectkey] = {}
+        sectkey = section
+        myconfig[sectkey] = {}
 
+        for option in options:
+            myconfig[sectkey][option] = Config.get(section, option)
 
-		for option in options:
-			myconfig[sectkey][option] = Config.get(section,option)
-
-
-	return myconfig # Useful for testing
+    return myconfig     # Useful for testing
 
 def usage():
 	print('Usage: wol.py [hostname]')
