@@ -90,6 +90,10 @@ def loadConfig():
 
 def usage():
     print('Usage: wol.py [hostname]')
+    print('')
+    print('list          List configured hosts')
+    print('[hostname]    hostname to wake (as listed in list)')
+    print('')
 
 if __name__ == '__main__':
         conf_path = os.path.expanduser('~/.config/bentasker.Wake-On-Lan-Python')
