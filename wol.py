@@ -57,10 +57,10 @@ def wake_on_lan(host) -> bool:
     return True
 
 
-def write_config(conf) -> None:
+def write_config(config) -> None:
     """Write configuration file to save local settings."""
     global conf_path
-    conf.write(open(conf_path + '/wol_config.ini', 'w'))
+    config.write(open(conf_path + '/wol_config.ini', 'w'))
 
 
 def load_config() -> dict:
