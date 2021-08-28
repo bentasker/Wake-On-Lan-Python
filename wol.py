@@ -56,13 +56,13 @@ def wake_on_lan(host):
     return True
 
 
-def writeConfig(conf):
+def write_config(conf):
     """ Write configuration file to save local settings """
     global conf_path
     conf.write(open(conf_path + '/wol_config.ini', 'w'))
 
 
-def loadConfig():
+def load_config():
     """ Read in the Configuration file to get CDN specific settings """
     global conf_path
     global my_config
@@ -82,7 +82,7 @@ def loadConfig():
         # two examples for devices
         Config['myPC'] = {'mac': '00:2a:a0:cf:83:15'}
         Config['myLaptop'] = {'mac': '00:13:0d:e4:60:61'}
-        writeConfig(Config)  # Generate default conf file
+        write_config(Config)  # Generate default conf file
     Config.read(conf_path + "/wol_config.ini")
     sections = Config.sections()
     dict1 = {}
@@ -109,7 +109,7 @@ def usage():
 
 if __name__ == '__main__':
     conf_path = os.path.expanduser('~/.config/bentasker.Wake-On-Lan-Python')
-    conf = loadConfig()
+    conf = load_config()
     try:
         prompt = ("-p" in sys.argv)
 
