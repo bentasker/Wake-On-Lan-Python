@@ -135,7 +135,7 @@ if __name__ == '__main__':
                 print('Invalid Hostname specified')
             else:
                 print(f'Magic packet should be winging its way to: {arg}')
-    except:
+    except IndexError:
         usage()
 
     finally:
