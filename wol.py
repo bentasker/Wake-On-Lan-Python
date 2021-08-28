@@ -55,10 +55,12 @@ def wake_on_lan(host):
     sock.sendto(send_data, (my_config['General']['broadcast'], 7))
     return True
 
+
 def writeConfig(conf):
     """ Write configuration file to save local settings """
     global conf_path
-    conf.write(open(conf_path+'/wol_config.ini', 'w'))
+    conf.write(open(conf_path + '/wol_config.ini', 'w'))
+
 
 def loadConfig():
     """ Read in the Configuration file to get CDN specific settings """
@@ -69,7 +71,7 @@ def loadConfig():
     if not os.path.exists(conf_path):
         os.makedirs(conf_path, exist_ok=True)
     # generate default config file if does not exists
-    if not os.path.exists(conf_path+'/wol_config.ini'):
+    if not os.path.exists(conf_path + '/wol_config.ini'):
         # get broadcast ip dynamicly
         local_ip = socket.gethostbyname(socket.gethostname())
         local_ip = local_ip.rsplit('.', 1)
@@ -80,8 +82,8 @@ def loadConfig():
         # two examples for devices
         Config['myPC'] = {'mac': '00:2a:a0:cf:83:15'}
         Config['myLaptop'] = {'mac': '00:13:0d:e4:60:61'}
-        writeConfig(Config)     # Generate default conf file
-    Config.read(conf_path+"/wol_config.ini")
+        writeConfig(Config)  # Generate default conf file
+    Config.read(conf_path + "/wol_config.ini")
     sections = Config.sections()
     dict1 = {}
     for section in sections:
@@ -93,7 +95,8 @@ def loadConfig():
         for option in options:
             my_config[sect_key][option] = Config.get(section, option)
 
-    return my_config     # Useful for testing
+    return my_config  # Useful for testing
+
 
 def usage():
     print('Usage: wol.py [-p] [hostname|list]')
@@ -103,27 +106,28 @@ def usage():
     print('[hostname]    hostname to wake (as listed in list)')
     print('')
 
+
 if __name__ == '__main__':
-        conf_path = os.path.expanduser('~/.config/bentasker.Wake-On-Lan-Python')
-        conf = loadConfig()
-        try:
-                prompt = ("-p" in sys.argv)
-            
-                # Use macaddresses with any seperators.
-                if (arg := sys.argv[-1]) == 'list':
-                        print('Configured Hosts:')
-                        for i in conf:
-                                if i != 'General':
-                                        print('\t',i)
-                        print('\n')
-                else:
-                        if not wake_on_lan(arg):
-                                print('Invalid Hostname specified')
-                        else:
-                                print(f'Magic packet should be winging its way to: {arg}')
-        except:
-                usage()
-                
-        finally:
-            if prompt:
-                input('Press ENTER to continue...')
+    conf_path = os.path.expanduser('~/.config/bentasker.Wake-On-Lan-Python')
+    conf = loadConfig()
+    try:
+        prompt = ("-p" in sys.argv)
+
+        # Use macaddresses with any seperators.
+        if (arg := sys.argv[-1]) == 'list':
+            print('Configured Hosts:')
+            for i in conf:
+                if i != 'General':
+                    print('\t', i)
+            print('\n')
+        else:
+            if not wake_on_lan(arg):
+                print('Invalid Hostname specified')
+            else:
+                print(f'Magic packet should be winging its way to: {arg}')
+    except:
+        usage()
+
+    finally:
+        if prompt:
+            input('Press ENTER to continue...')
