@@ -85,7 +85,6 @@ def load_config():
         write_config(Config)  # Generate default conf file
     Config.read(conf_path + "/wol_config.ini")
     sections = Config.sections()
-    dict1 = {}
     for section in sections:
         options = Config.options(section)
 
