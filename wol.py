@@ -57,13 +57,13 @@ def wake_on_lan(host):
 
 
 def write_config(conf):
-    """ Write configuration file to save local settings """
+    """Write configuration file to save local settings."""
     global conf_path
     conf.write(open(conf_path + '/wol_config.ini', 'w'))
 
 
 def load_config():
-    """ Read in the Configuration file to get CDN specific settings """
+    """Read in the Configuration file to get CDN specific settings."""
     global conf_path
     global my_config
     Config = configparser.ConfigParser()
