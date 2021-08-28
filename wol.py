@@ -99,12 +99,14 @@ def load_config():
 
 
 def usage():
-    print('Usage: wol.py [-p] [hostname|list]')
-    print('')
-    print('-p            Prompt for input before exiting')
-    print('list          List configured hosts')
-    print('[hostname]    hostname to wake (as listed in list)')
-    print('')
+    print(
+        'Usage: wol.py [-p] [hostname|list]\n'
+        '\n'
+        '-p            Prompt for input before exiting\n'
+        'list          List configured hosts\n'
+        '[hostname]    hostname to wake (as listed in list)\n'
+        '\n'
+    )
 
 
 if __name__ == '__main__':
