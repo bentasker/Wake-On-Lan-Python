@@ -72,7 +72,7 @@ def load_config():
         os.makedirs(conf_path, exist_ok=True)
     # generate default config file if does not exists
     if not os.path.exists(conf_path + '/wol_config.ini'):
-        # get broadcast ip dynamicly
+        # get broadcast ip dynamically
         local_ip = socket.gethostbyname(socket.gethostname())
         local_ip = local_ip.rsplit('.', 1)
         local_ip[1] = '255'
@@ -113,7 +113,7 @@ if __name__ == '__main__':
     try:
         prompt = ("-p" in sys.argv)
 
-        # Use macaddresses with any seperators.
+        # Use mac addresses with any separators.
         if (arg := sys.argv[-1]) == 'list':
             print('Configured Hosts:')
             for i in conf:
