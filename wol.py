@@ -89,8 +89,9 @@ def loadConfig():
     return my_config     # Useful for testing
 
 def usage():
-    print('Usage: wol.py [hostname]')
+    print('Usage: wol.py [-p] [hostname|list]')
     print('')
+    print('-p            Prompt for input before exiting')
     print('list          List configured hosts')
     print('[hostname]    hostname to wake (as listed in list)')
     print('')
@@ -99,8 +100,10 @@ if __name__ == '__main__':
         conf_path = os.path.expanduser('~/.config/bentasker.Wake-On-Lan-Python')
         conf = loadConfig()
         try:
+                prompt = ("-p" in sys.argv)
+            
                 # Use macaddresses with any seperators.
-                if (arg := sys.argv[1]) == 'list':
+                if (arg := sys.argv[-1]) == 'list':
                         print('Configured Hosts:')
                         for i in conf:
                                 if i != 'General':
@@ -115,4 +118,5 @@ if __name__ == '__main__':
                 usage()
                 
         finally:
-            input('Press ENTER to continue...')
+            if prompt:
+                input('Press ENTER to continue...')
