@@ -66,7 +66,7 @@ def load_config():
     """Read in the Configuration file to get CDN specific settings."""
     global conf_path
     global my_config
-    Config = configparser.ConfigParser()
+    config = configparser.ConfigParser()
     # Create conf path if does not exists
     if not os.path.exists(conf_path):
         os.makedirs(conf_path, exist_ok=True)
@@ -78,21 +78,21 @@ def load_config():
         local_ip[1] = '255'
         broadcast_ip = '.'.join(local_ip)
         # Load default values to new conf file
-        Config['General'] = {'broadcast': broadcast_ip}
+        config['General'] = {'broadcast': broadcast_ip}
         # two examples for devices
-        Config['myPC'] = {'mac': '00:2a:a0:cf:83:15'}
-        Config['myLaptop'] = {'mac': '00:13:0d:e4:60:61'}
-        write_config(Config)  # Generate default conf file
-    Config.read(conf_path + "/wol_config.ini")
-    sections = Config.sections()
+        config['myPC'] = {'mac': '00:2a:a0:cf:83:15'}
+        config['myLaptop'] = {'mac': '00:13:0d:e4:60:61'}
+        write_config(config)  # Generate default conf file
+    config.read(conf_path + "/wol_config.ini")
+    sections = config.sections()
     for section in sections:
-        options = Config.options(section)
+        options = config.options(section)
 
         sect_key = section
         my_config[sect_key] = {}
 
         for option in options:
-            my_config[sect_key][option] = Config.get(section, option)
+            my_config[sect_key][option] = config.get(section, option)
 
     return my_config  # Useful for testing
 
