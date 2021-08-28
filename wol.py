@@ -31,6 +31,7 @@ def wake_on_lan(host):
         '^([A-F0-9]{2}(([:][A-F0-9]{2}){5}|([-][A-F0-9]{2}){5})|([s][A-F0-9]{2}){5})|([a-f0-9]{2}(([:][a-f0-9]{2}){'
         '5}|([-][a-f0-9]{2}){5}|([s][a-f0-9]{2}){5}))$',
         mac_address)
+
     # We must found 1 match , or the MAC is invalid
     if found:
         # If the match is found, remove mac separator [:-\s]
@@ -67,22 +68,29 @@ def load_config():
     global conf_path
     global my_config
     config = configparser.ConfigParser()
+
     # Create conf path if does not exists
     if not os.path.exists(conf_path):
         os.makedirs(conf_path, exist_ok=True)
-    # generate default config file if does not exists
+
+    # Generate default config file if does not exists
     if not os.path.exists(conf_path + '/wol_config.ini'):
-        # get broadcast ip dynamically
+        # Get broadcast ip dynamically
         local_ip = socket.gethostbyname(socket.gethostname())
         local_ip = local_ip.rsplit('.', 1)
         local_ip[1] = '255'
         broadcast_ip = '.'.join(local_ip)
+
         # Load default values to new conf file
         config['General'] = {'broadcast': broadcast_ip}
-        # two examples for devices
+
+        # Two examples for devices
         config['myPC'] = {'mac': '00:2a:a0:cf:83:15'}
         config['myLaptop'] = {'mac': '00:13:0d:e4:60:61'}
-        write_config(config)  # Generate default conf file
+
+        # Generate default conf file
+        write_config(config)
+
     config.read(conf_path + "/wol_config.ini")
     sections = config.sections()
     for section in sections:
@@ -114,7 +122,7 @@ if __name__ == '__main__':
     try:
         prompt = ("-p" in sys.argv)
 
-        # Use mac addresses with any separators.
+        # Use MAC addresses with any separators.
         if (arg := sys.argv[-1]) == 'list':
             print('Configured Hosts:')
             for i in conf:
