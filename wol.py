@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+#
+# Copyright (C) Fadly Tabrani, B Tasker
+#
+# Released under the PSF License See http://docs.python.org/2/license.html
+#
+#
+
 import socket
 import struct
 import os
