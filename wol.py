@@ -120,9 +120,9 @@ def usage() -> None:
 if __name__ == '__main__':
     conf_path = os.path.expanduser('~/.config/bentasker.Wake-On-Lan-Python')
     conf = load_config()
-    try:
-        prompt = ("-p" in sys.argv)
 
+    prompt = ("-p" in sys.argv)
+    try:
         # Use MAC addresses with any separators.
         if (arg := sys.argv[-1]) == 'list':
             print('Configured Hosts:')
