@@ -17,7 +17,7 @@ import re
 my_config = {}
 
 
-def wake_on_lan(host):
+def wake_on_lan(host) -> bool:
     """Switches on remote computers using WOL."""
     global my_config
 
@@ -57,13 +57,13 @@ def wake_on_lan(host):
     return True
 
 
-def write_config(conf):
+def write_config(conf) -> None:
     """Write configuration file to save local settings."""
     global conf_path
     conf.write(open(conf_path + '/wol_config.ini', 'w'))
 
 
-def load_config():
+def load_config() -> dict:
     """Read in the Configuration file to get CDN specific settings."""
     global conf_path
     global my_config
@@ -105,7 +105,7 @@ def load_config():
     return my_config  # Useful for testing
 
 
-def usage():
+def usage() -> None:
     print(
         'Usage: wol.py [-p] [hostname|list]\n'
         '\n'
