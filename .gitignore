@@ -40,3 +40,6 @@ nosetests.xml
 
 # Virtual environment
 venv/
+
+# generated config
+wol_config.ini
