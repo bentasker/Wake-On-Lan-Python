@@ -123,8 +123,9 @@ if __name__ == '__main__':
 
     prompt = ("-p" in sys.argv)
     try:
+        arg = sys.argv[-1]
         # Use MAC addresses with any separators.
-        if (arg := sys.argv[-1]) == 'list':
+        if arg == 'list':
             print('Configured Hosts:')
             for i in conf:
                 if i != 'General':
