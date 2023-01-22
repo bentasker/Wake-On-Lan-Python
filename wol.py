@@ -190,6 +190,7 @@ class WakeOnLan(object):
         print(
             'Usage: wol.py [-p] [hostname|list]\n'
             '\n'
+            '-h            Print this text\n\n'
             '-p            Prompt for input before exiting\n'
             'list          List configured hosts\n'
             '[hostname]    hostname to wake (as listed in list)\n'
@@ -205,6 +206,10 @@ class WakeOnLan(object):
             self.__conf_dir = Path(env_config_dir).expanduser().absolute()
         
         config = self.load_config() if load_config_from_file else self.config
+
+        if "-h" in sys_args or "--help" in sys_args:
+            self.usage()
+            return
 
         prompt = ("-p" in sys_args)
         try:
