@@ -28,7 +28,14 @@ Configuration File
 
 The configuration file is just a basic INI file, containing one section per host;
 
-The configuration file is located at `~/.config/bentasker.Wake-On-Lan-Python/wol_config.ini`
+By default, the configuration file is located at `~/.config/bentasker.Wake-On-Lan-Python/wol_config.ini`
+
+The location can be overridden via environment variable `WOL_CONFIG_DIR`:
+```
+export WOL_CONFIG_DIR="/some/path/wol_config
+```
+
+If it does not exist, it will be created and `wol_config.ini` created within it.
 
 The following is an example of hosts save in `wol_config.ini`
 
