@@ -9,6 +9,8 @@
 
 import typing as _t
 
+import os
+
 import inspect
 import re
 import socket
@@ -189,6 +191,13 @@ class WakeOnLan(object):
         )
 
     def __call__(self, *sys_args: str, load_config_from_file=True) -> None:
+        
+        # Allow the environment to override config dir location
+        env_config_dir = os.getenv("WOL_CONFIG_DIR", False)
+        if env_config_dir:
+            # Convert to an absolute path
+            self.__conf_dir = Path(env_config_dir).expanduser().absolute()
+        
         config = self.load_config() if load_config_from_file else self.config
 
         prompt = ("-p" in sys_args)

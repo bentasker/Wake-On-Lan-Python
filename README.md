@@ -22,13 +22,59 @@ or
     wol.py list
 
 
+Usage: Docker
+---------------
+
+It is also possible to run the utility with Docker, however there is a small additional configuration step required the first time that it's run
+
+Run `list`:
+```
+docker run \
+--rm \
+-v ~/.config/bentasker.Wake-On-Lan-Python/:/wol_config \
+bentasker12/wake-on-lan-python list
+```
+
+Edit the generated configuration file
+```
+vi ~/.config/bentasker.Wake-On-Lan-Python/wol_config.ini
+```
+
+You will find that the broadcast address is for the wrong network, replace this with the correct prefix
+```
+[General]
+broadcast = 172.0.1.255
+```
+
+becomes
+```
+[General]
+broadcast = 192.168.1.255
+```
+
+Subsequent runs should then run as desired
+```
+docker run \
+--rm \
+-v ~/.config/bentasker.Wake-On-Lan-Python/:/wol_config \
+bentasker12/wake-on-lan-python myPC
+```
+
+
 
 Configuration File
 --------------------
 
 The configuration file is just a basic INI file, containing one section per host;
 
-The configuration file is located at `~/.config/bentasker.Wake-On-Lan-Python/wol_config.ini`
+By default, the configuration file is located at `~/.config/bentasker.Wake-On-Lan-Python/wol_config.ini`
+
+The location can be overridden via environment variable `WOL_CONFIG_DIR`:
+```
+export WOL_CONFIG_DIR="/some/path/wol_config
+```
+
+If it does not exist, it will be created and `wol_config.ini` created within it.
 
 The following is an example of hosts save in `wol_config.ini`
 
