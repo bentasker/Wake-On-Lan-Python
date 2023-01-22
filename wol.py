@@ -91,11 +91,17 @@ class WakeOnLan(object):
         """Switches on remote computers using WOL."""
         config = self.config
 
-        try:
-            mac_address = config[host]['mac']
-        except KeyError:
+        if host not in config:
+            # Whilst it'd be nice to convert this to an exception
+            # it's prob better to maintain b/c and avoid breaking
+            # any existing wrappers
             return False
+        
+        if 'mac' not in config[host]:
+            raise ValueError("MAC address not specified in config")
 
+        mac_address = config[host]['mac']
+        
         # Check mac address format
         found = re.fullmatch(
             '^([A-F0-9]{2}(([:][A-F0-9]{2}){5}|([-][A-F0-9]{2}){5})|([s][A-F0-9]{2}){5})|([a-f0-9]{2}(([:][a-f0-9]{2}){'
@@ -211,10 +217,13 @@ class WakeOnLan(object):
                         print('\t', i)
                 print('\n')
             else:
-                if not self.wake_on_lan(arg):
-                    print('Invalid Hostname specified')
-                else:
-                    print(f'Magic packet should be winging its way to: {arg}')
+                try:
+                    if not self.wake_on_lan(arg):
+                        print('Invalid Hostname specified')
+                    else:
+                        print(f'Magic packet should be winging its way to: {arg}')
+                except Exception as e:
+                    print(e)
         except IndexError:
             self.usage()
 
