@@ -214,7 +214,10 @@ class WakeOnLan(object):
                 print('Configured Hosts:')
                 for i in config:
                     if i != 'General':
-                        print('\t', i)
+                        mac = "Err: no mac configured"
+                        if 'mac' in config[i]:
+                            mac = config[i]['mac']
+                        print('\t', i, '({})'.format(mac))
                 print('\n')
             else:
                 try:
